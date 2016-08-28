@@ -16,12 +16,19 @@ struct TreeNode
 
 struct Tree
 {
-	Tree();
 	typedef unsigned int ElementType;
+
+	Tree();
 	void init();
-	void addNode(ElementType node);
-	void delNode(ElementType eleVal);
-	SearchTree find(ElementType eleVal);
+
+	Position find(ElementType eleVal, SearchTree node);
+	Position findMin(SearchTree node);
+	Position findMax(SearchTree node);
+	SearchTree insertNode(ElementType val, SearchTree node);
+	SearchTree deleteNode(ElementType val, SearchTree node);
+	ElementType retrieve(Position pos);
+	SearchTree getRoot();
+	void printTree(SearchTree node);
 
 private:
 	void makeEmpty(SearchTree node);

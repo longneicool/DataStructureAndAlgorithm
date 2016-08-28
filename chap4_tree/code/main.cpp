@@ -1,8 +1,15 @@
 #include <iostream>
+#include "tree.h"
 
 int main()
 {
-    std::cout << "Hello World" << std::endl;
+	Tree tree;
+	for (int i = 0; i < 10; i++)
+	{
+		tree.insertNode(i, tree.getRoot());
+	}
 
-    return 0;
+	tree.printTree(tree.getRoot());
+
+	return 0;
 }
