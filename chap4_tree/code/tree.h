@@ -24,16 +24,18 @@ struct Tree
 	Position find(ElementType eleVal, SearchTree node);
 	Position findMin(SearchTree node);
 	Position findMax(SearchTree node);
-	SearchTree insertNode(ElementType val, SearchTree node);
+	SearchTree insertNode(ElementType val, SearchTree& node);
 	SearchTree deleteNode(ElementType val, SearchTree node);
 	ElementType retrieve(Position pos);
-	SearchTree getRoot();
-	void printTree(SearchTree node);
+	SearchTree& getRoot();
+	void printTree(SearchTree node, int indent);
 
 private:
 	void makeEmpty(SearchTree node);
 private:
 	SearchTree root;
+
+	unsigned _level;
 };
 
 #endif /* HD8E819B1_5467_4EA0_96F7_7CA4DB9B59B2 */

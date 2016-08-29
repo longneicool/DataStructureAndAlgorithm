@@ -4,9 +4,10 @@
 int main()
 {
 	Tree tree;
-	for (int i = 0; i < 10; i++)
+	unsigned array[] = {10, 1, 4, 5, 7, 10, 0, 19};
+	for (int i = 0; i < sizeof(array)/sizeof(unsigned); i++)
 	{
-		tree.insertNode(i, tree.getRoot());
+		tree.insertNode(array[i], tree.getRoot());
 	}
 
 	tree.printTree(tree.getRoot());

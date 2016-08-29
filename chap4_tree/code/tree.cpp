@@ -1,7 +1,8 @@
 #include "tree.h"
 #include <iostream>
+#include <iomanip>
 
-Tree::Tree() : root(NULL)
+Tree::Tree() : root(NULL), _level(0)
 {
 
 }
@@ -21,7 +22,7 @@ void Tree::makeEmpty(SearchTree node)
 	}
 }
 
-SearchTree Tree::insertNode(ElementType val, SearchTree node)
+SearchTree Tree::insertNode(ElementType val, SearchTree& node)
 {
 	if(node == NULL)
 	{
@@ -44,17 +45,18 @@ SearchTree Tree::insertNode(ElementType val, SearchTree node)
 	return node;
 }
 
-void Tree::printTree(SearchTree tree)
+void Tree::printTree(SearchTree tree, int indent)
 {
-	if(tree != NULL)
+	if(tree!=NULL)
 	{
-		std::cout << tree->elem << std::endl;
-		printTree(tree->left);
-		printTree(tree->right);
+		std::cout << std::setw(indent) << ' ';
+		printTree(tree->left, indent - 4);
+		printTree(tree->right, indent + 4);
 	}
 }
 
-SearchTree Tree::getRoot()
+
+SearchTree& Tree::getRoot()
 {
 	return root;
 }
