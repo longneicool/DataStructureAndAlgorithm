@@ -21,14 +21,14 @@ struct Tree
 	Tree();
 	void init();
 
-	Position find(ElementType eleVal, SearchTree node);
-	Position findMin(SearchTree node);
-	Position findMax(SearchTree node);
+	void preOrderWalk(SearchTree node);
+	void inOrderWalk(SearchTree node);
+	void postOrderWalk(SearchTree node);
+
+	void preOrderWalkWithoutRecur(SearchTree node);
+
 	SearchTree insertNode(ElementType val, SearchTree& node);
-	SearchTree deleteNode(ElementType val, SearchTree node);
-	ElementType retrieve(Position pos);
 	SearchTree& getRoot();
-	void printTree(SearchTree node, int indent);
 
 private:
 	void makeEmpty(SearchTree node);

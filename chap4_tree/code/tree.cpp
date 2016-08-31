@@ -1,6 +1,7 @@
 #include "tree.h"
 #include <iostream>
 #include <iomanip>
+#include <stack>
 
 Tree::Tree() : root(NULL), _level(0)
 {
@@ -45,18 +46,57 @@ SearchTree Tree::insertNode(ElementType val, SearchTree& node)
 	return node;
 }
 
-void Tree::printTree(SearchTree tree, int indent)
-{
-	if(tree!=NULL)
-	{
-		std::cout << std::setw(indent) << ' ';
-		printTree(tree->left, indent - 4);
-		printTree(tree->right, indent + 4);
-	}
-}
-
-
 SearchTree& Tree::getRoot()
 {
 	return root;
 }
+
+void Tree::preOrderWalk(SearchTree node)
+{
+	if(node == NULL)  return;
+
+	std::cout << node->elem << " ";
+	preOrderWalk(node->left);
+	preOrderWalk(node->right);
+}
+
+void Tree::inOrderWalk(SearchTree node)
+{
+	if(node == NULL) return;
+	inOrderWalk(node->left);
+	std::cout << node->elem << " ";
+	inOrderWalk(node->right);
+}
+
+void Tree::postOrderWalk(SearchTree node)
+{
+	if(node == NULL) return;
+	postOrderWalk(node->left);
+	postOrderWalk(node->right);
+	std::cout << node->elem << " ";
+}
+
+void Tree::preOrderWalkWithoutRecur(SearchTree node)
+{
+	if(node == NULL) return;
+
+	std::stack<SearchTree> treeStack;
+
+	while(node != NULL || !treeStack.empty())
+	{
+		while(node != NULL)
+		{
+			std::cout << node->elem << " ";
+			treeStack.push(node);
+			node = node->left;
+		}
+
+		if(!treeStack.empty())
+		{
+			SearchTree cur = treeStack.top();
+			treeStack.pop();
+			node = cur->right;
+		}
+	}
+}
+
