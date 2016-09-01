@@ -10,13 +10,17 @@ int main()
 		tree.insertNode(array[i], tree.getRoot());
 	}
 
+	std::cout << "PreOrderWalk: ";
 	tree.preOrderWalk(tree.getRoot());
-	std::cout << "Inorder Walk! " << std::endl;
+	std::cout << std::endl << "Inorder Walk: " ;
 	tree.inOrderWalk(tree.getRoot());
-	std::cout << "Post Order !" << std::endl;
+	std::cout << std::endl << "Post Order: ";
 	tree.postOrderWalk(tree.getRoot());
-	std::cout << std::endl <<"preOrderWalkWithoutRecur" << std::endl;
+	std::cout << std::endl <<"preOrderWalkWithoutRecur: ";
 	tree.preOrderWalkWithoutRecur(tree.getRoot());
+
+	std::cout << std::endl << "inOrderWalkWithoutRecur: ";
+	tree.inOrderWalkWithoutRecur(tree.getRoot());
 
 	return 0;
 }

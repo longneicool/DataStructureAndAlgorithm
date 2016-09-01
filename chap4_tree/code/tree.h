@@ -26,6 +26,7 @@ struct Tree
 	void postOrderWalk(SearchTree node);
 
 	void preOrderWalkWithoutRecur(SearchTree node);
+	void inOrderWalkWithoutRecur(SearchTree node);
 
 	SearchTree insertNode(ElementType val, SearchTree& node);
 	SearchTree& getRoot();

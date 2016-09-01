@@ -100,3 +100,29 @@ void Tree::preOrderWalkWithoutRecur(SearchTree node)
 	}
 }
 
+void Tree::inOrderWalkWithoutRecur(SearchTree node)
+{
+    if(node == NULL) return;
+
+    std::stack<SearchTree> treeStack;
+
+    while(node != NULL || !treeStack.empty())
+    {
+        while(node != NULL)
+        {
+            treeStack.push(node);
+            node = node->left;
+        }
+
+        if(!treeStack.empty())
+        {
+            SearchTree cur = treeStack.top();
+            std::cout << cur->elem << " ";
+            treeStack.pop();
+            node = cur->right;
+        }
+    }
+
+
+}
+
