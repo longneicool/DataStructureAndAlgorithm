@@ -1,6 +1,8 @@
 #ifndef HD8E819B1_5467_4EA0_96F7_7CA4DB9B59B2
 #define HD8E819B1_5467_4EA0_96F7_7CA4DB9B59B2
 
+#include <vector>
+
 #define NULL 0
 
 struct TreeNode;
@@ -27,14 +29,17 @@ struct Tree
 
 	void preOrderWalkWithoutRecur(SearchTree node);
 	void inOrderWalkWithoutRecur(SearchTree node);
+	void postOrderWalkWithoutRecur(SearchTree node);
 
 	SearchTree insertNode(ElementType val, SearchTree& node);
 	SearchTree& getRoot();
+	void print();
 
 private:
 	void makeEmpty(SearchTree node);
 private:
 	SearchTree root;
+	std::vector<ElementType> vec;
 
 	unsigned _level;
 };

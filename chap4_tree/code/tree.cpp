@@ -103,26 +103,47 @@ void Tree::preOrderWalkWithoutRecur(SearchTree node)
 void Tree::inOrderWalkWithoutRecur(SearchTree node)
 {
     if(node == NULL) return;
-
+    vec.clear();
     std::stack<SearchTree> treeStack;
 
-    while(node != NULL || !treeStack.empty())
+    treeStack.push(node);
+    while(!treeStack.empty())
     {
-        while(node != NULL)
-        {
-            treeStack.push(node);
-            node = node->left;
-        }
+    	SearchTree cur = treeStack.top();
+    	treeStack.pop();
 
-        if(!treeStack.empty())
-        {
-            SearchTree cur = treeStack.top();
-            std::cout << cur->elem << " ";
-            treeStack.pop();
-            node = cur->right;
-        }
+    	if(cur->left) treeStack.push(cur->left);
+    	vec.push_back(cur->elem);
+    	if(cur->right) treeStack.push(cur->right);
     }
 
-
+    print();
 }
 
+void Tree::postOrderWalkWithoutRecur(SearchTree node)
+{
+	if(node == NULL) return;
+	std::stack<SearchTree> treeStack;
+
+	treeStack.push(node);
+	while(!treeStack.empty())
+	{
+		SearchTree cur = treeStack.top();
+		treeStack.pop();
+		vec.insert(vec.begin(), cur->elem);
+		if(cur->left) treeStack.push(cur->left);
+		if(cur->right) treeStack.push(cur->right);
+	}
+
+	print();
+}
+
+void Tree::print()
+{
+	std::vector<ElementType>::iterator it = vec.begin();
+	while(it != vec.end())
+	{
+		std::cout << *it << " ";
+		it++;
+	}
+}

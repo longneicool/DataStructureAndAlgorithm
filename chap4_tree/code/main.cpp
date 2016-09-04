@@ -22,5 +22,8 @@ int main()
 	std::cout << std::endl << "inOrderWalkWithoutRecur: ";
 	tree.inOrderWalkWithoutRecur(tree.getRoot());
 
+	std::cout << std::endl << "postOrderWalkWithoutRecur: ";
+	tree.postOrderWalkWithoutRecur(tree.getRoot());
+
 	return 0;
 }
