@@ -1,5 +1,6 @@
 #include "tree.h"
 #include <iostream>
+#include <stdio.h>
 #include <iomanip>
 #include <stack>
 #include <strstream>
@@ -158,4 +159,20 @@ SearchTree Tree::search(SearchTree node, ElementType val)
 
     if(val > node->elem) return search(node->right, val);
     return search(node->left, val);
+}
+
+std::string Tree::print()
+{
+	char buf[200];
+	std::string str;
+
+	std::vector<ElementType>::iterator it = vec.begin();
+	while(it != vec.end())
+	{
+		sprintf(buf, "%d ", *it);
+		str += std::string(buf);
+		it++;
+	}
+
+	return str;
 }

@@ -36,6 +36,7 @@ struct Tree
 	SearchTree insertNode(ElementType val, SearchTree& node);
 	SearchTree& getRoot();
 
+	std::string print();
 private:
 	void makeEmpty(SearchTree node);
 private:

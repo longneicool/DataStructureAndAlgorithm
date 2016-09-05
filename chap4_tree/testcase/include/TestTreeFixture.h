@@ -9,6 +9,9 @@ struct TestTreeFixture : testing::Test
     virtual void SetUp();
 protected:
     Tree testTree;
+    std::string preOrder;
+    std::string inOrder;
+    std::string postOrder;
 };
 
 #endif
