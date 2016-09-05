@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <stack>
+#include <strstream>
 
 Tree::Tree() : root(NULL), _level(0)
 {
@@ -55,7 +56,7 @@ void Tree::preOrderWalk(SearchTree node)
 {
 	if(node == NULL)  return;
 
-	std::cout << node->elem << " ";
+	vec.push_back(node->elem);
 	preOrderWalk(node->left);
 	preOrderWalk(node->right);
 }
@@ -64,7 +65,7 @@ void Tree::inOrderWalk(SearchTree node)
 {
 	if(node == NULL) return;
 	inOrderWalk(node->left);
-	std::cout << node->elem << " ";
+	vec.push_back(node->elem);
 	inOrderWalk(node->right);
 }
 
@@ -73,12 +74,13 @@ void Tree::postOrderWalk(SearchTree node)
 	if(node == NULL) return;
 	postOrderWalk(node->left);
 	postOrderWalk(node->right);
-	std::cout << node->elem << " ";
+	vec.push_back(node->elem);
 }
 
 void Tree::preOrderWalkWithoutRecur(SearchTree node)
 {
 	if(node == NULL) return;
+	vec.clear();
 
 	std::stack<SearchTree> treeStack;
 
@@ -86,7 +88,7 @@ void Tree::preOrderWalkWithoutRecur(SearchTree node)
 	{
 		while(node != NULL)
 		{
-			std::cout << node->elem << " ";
+		    vec.push_back(node->elem);
 			treeStack.push(node);
 			node = node->left;
 		}
@@ -104,25 +106,35 @@ void Tree::inOrderWalkWithoutRecur(SearchTree node)
 {
     if(node == NULL) return;
     vec.clear();
+
     std::stack<SearchTree> treeStack;
 
-    treeStack.push(node);
-    while(!treeStack.empty())
+    SearchTree cur = node;
+    while(cur != NULL || !treeStack.empty())
     {
-    	SearchTree cur = treeStack.top();
-    	treeStack.pop();
+        while(cur != NULL)
+        {
+            treeStack.push(cur);
+            cur = cur->left;
+        }
 
-    	if(cur->left) treeStack.push(cur->left);
-    	vec.push_back(cur->elem);
-    	if(cur->right) treeStack.push(cur->right);
+        if(!treeStack.empty())
+        {
+            cur = treeStack.top();
+            treeStack.pop();
+            vec.push_back(cur->elem);
+
+            cur = cur->right;
+        }
     }
-
-    print();
 }
 
 void Tree::postOrderWalkWithoutRecur(SearchTree node)
 {
 	if(node == NULL) return;
+
+	vec.clear();
+
 	std::stack<SearchTree> treeStack;
 
 	treeStack.push(node);
@@ -134,16 +146,16 @@ void Tree::postOrderWalkWithoutRecur(SearchTree node)
 		if(cur->left) treeStack.push(cur->left);
 		if(cur->right) treeStack.push(cur->right);
 	}
-
-	print();
 }
 
-void Tree::print()
+SearchTree Tree::search(SearchTree node, ElementType val)
 {
-	std::vector<ElementType>::iterator it = vec.begin();
-	while(it != vec.end())
-	{
-		std::cout << *it << " ";
-		it++;
-	}
+    if(node == NULL)
+        return node;
+
+    if(val == node->elem)
+        return node;
+
+    if(val > node->elem) return search(node->right, val);
+    return search(node->left, val);
 }

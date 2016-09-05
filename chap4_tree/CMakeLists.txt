@@ -12,6 +12,7 @@ FILE(GLOB_RECURSE HEAD_FILES code/*.h testcase/*.h)
 include_directories(
     gtest/
     code/
+    testcase/include
     )
 add_executable(tree ${SOURCE_FILES} ${HEAD_FILES})
 target_link_libraries(tree gtest)

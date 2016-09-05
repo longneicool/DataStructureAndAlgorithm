@@ -2,8 +2,8 @@
 #define HD8E819B1_5467_4EA0_96F7_7CA4DB9B59B2
 
 #include <vector>
+#include <string>
 
-#define NULL 0
 
 struct TreeNode;
 typedef TreeNode* SearchTree;
@@ -31,9 +31,10 @@ struct Tree
 	void inOrderWalkWithoutRecur(SearchTree node);
 	void postOrderWalkWithoutRecur(SearchTree node);
 
+	SearchTree search(SearchTree node, ElementType val);
+
 	SearchTree insertNode(ElementType val, SearchTree& node);
 	SearchTree& getRoot();
-	void print();
 
 private:
 	void makeEmpty(SearchTree node);
