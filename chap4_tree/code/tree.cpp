@@ -161,6 +161,24 @@ SearchTree Tree::search(SearchTree node, ElementType val)
     return search(node->left, val);
 }
 
+SearchTree Tree::searchWithoutRecurse(SearchTree node, ElementType val)
+{
+	while(node != NULL)
+	{
+		if(val == node->elem) return node;
+
+		if(val > node->elem)
+		{
+			node = node ->right;
+			continue;
+		}
+
+		node = node->left;
+	}
+
+	return node;
+}
+
 std::string Tree::print()
 {
 	char buf[200];

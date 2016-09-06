@@ -48,3 +48,27 @@ TEST_F(TestTreeFixture, test_post_order_print_without_recurse)
 
 	EXPECT_STREQ(postOrder.c_str(), actual.c_str());
 }
+
+TEST_F(TestTreeFixture, test_search_with_recurse)
+{
+	SearchTree actual = testTree.search(testTree.getRoot(), 100);
+	EXPECT_EQ(100, actual->elem);
+}
+
+TEST_F(TestTreeFixture, test_search_without_recurse)
+{
+	SearchTree actual = testTree.searchWithoutRecurse(testTree.getRoot(), 100);
+	EXPECT_EQ(100, actual->elem);
+}
+
+TEST_F(TestTreeFixture, should_return_null_when_not_search_in_recurse_search)
+{
+	SearchTree actual = testTree.search(testTree.getRoot(), 1000);
+	EXPECT_EQ(NULL, actual);
+}
+
+TEST_F(TestTreeFixture, should_return_null_when_not_search_in_without_recurse_search)
+{
+	SearchTree actual = testTree.searchWithoutRecurse(testTree.getRoot(), 1000);
+	EXPECT_EQ(NULL, actual);
+}
