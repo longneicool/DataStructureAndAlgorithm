@@ -179,6 +179,36 @@ SearchTree Tree::searchWithoutRecurse(SearchTree node, ElementType val)
 	return node;
 }
 
+Tree::ElementType Tree::min()
+{
+	SearchTree node = root;
+	ElementType minVal = 0xFFFFFFFF;
+	while(node != NULL)
+	{
+		if(node->elem < minVal)
+			minVal = node->elem;
+
+		node= node->left;
+	}
+
+	return minVal;
+}
+
+Tree::ElementType Tree::max()
+{
+	SearchTree node = root;
+	ElementType maxVal = 0;
+	while(node != NULL)
+	{
+		if(node->elem > maxVal)
+			maxVal = node->elem;
+
+		node = node->right;
+	}
+
+	return maxVal;
+}
+
 std::string Tree::print()
 {
 	char buf[200];

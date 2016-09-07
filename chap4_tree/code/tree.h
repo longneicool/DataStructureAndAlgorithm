@@ -34,6 +34,9 @@ struct Tree
 	SearchTree search(SearchTree node, ElementType val);
 	SearchTree searchWithoutRecurse(SearchTree node, ElementType val);
 
+	ElementType min();
+	ElementType max();
+
 	SearchTree insertNode(ElementType val, SearchTree& node);
 	SearchTree& getRoot();
 

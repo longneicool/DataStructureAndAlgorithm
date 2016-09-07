@@ -72,3 +72,13 @@ TEST_F(TestTreeFixture, should_return_null_when_not_search_in_without_recurse_se
 	SearchTree actual = testTree.searchWithoutRecurse(testTree.getRoot(), 1000);
 	EXPECT_EQ(NULL, actual);
 }
+
+TEST_F(TestTreeFixture, should_return_100_when_find_max)
+{
+	EXPECT_EQ(100, testTree.max());
+}
+
+TEST_F(TestTreeFixture, should_return_0_when_find_min)
+{
+	EXPECT_EQ(0, testTree.min());
+}
